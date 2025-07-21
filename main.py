@@ -62,6 +62,18 @@ class Project(BaseModel):
     featured: bool = False
     created_at: datetime = Field(default_factory=datetime.now)
 
+
+class ContactForm(BaseModel):
+    name: str
+    email: str
+    message: str
+
+# Contact endpoint
+@app.post("/contact")
+async def contact(form: ContactForm):
+    print("Form received:", form)
+    return {"message": "Message received successfully"}
+
 class ProjectCreate(BaseModel):
     title: str
     category: str
